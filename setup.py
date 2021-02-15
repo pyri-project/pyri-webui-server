@@ -14,7 +14,8 @@ setup(
     install_requires=[
         'pyri-common',
         'sanic',
-        'importlib-resources'
+        'importlib-resources',
+        'appdirs'
     ],
     tests_require=['pytest','pytest-asyncio'],
     extras_require={

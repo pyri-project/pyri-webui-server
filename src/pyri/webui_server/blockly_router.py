@@ -12,7 +12,10 @@ class PryiWebUIBlocklyBlocksRouteHandler:
         self._blocks = dict()
         for b in all_blocks.values():
             block_safe_name = re.sub('[^0-9a-zA-Z_]+', '', b.name)   
-            self._blocks[block_safe_name] = b             
+            self._blocks[block_safe_name] = b   
+
+    def get_block_names(self):
+        return list(self._blocks.keys())
 
     async def handler(self, request, path=None):
         if path is None:
