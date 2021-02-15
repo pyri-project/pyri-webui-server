@@ -38,7 +38,7 @@ class PyriWebUIServer:
         self._app.add_route(main_handler.handler,"/")
         self._app.add_route(main_handler.handler,"/<path:[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)*>")
 
-        self._app.static('/wheels',wheels_dir,name='wheels')
+        self._app.static('/wheels',str(wheels_dir),name='wheels')
 
         self._wheel_filenames = [str(w.stem) for w in wheels_dir.glob('*.whl')]
 
