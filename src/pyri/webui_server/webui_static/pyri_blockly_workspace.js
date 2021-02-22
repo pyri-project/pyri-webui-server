@@ -125,7 +125,7 @@ async function loadBlocks()
         }
         const block_json_text = await response2.text()
         const block_json = JSON.parse(block_json_text)
-        $(new_blocks).append(block_json)        
+        new_blocks.push(block_json)        
     }
     Blockly.defineBlocksWithJsonArray(new_blocks)
 }

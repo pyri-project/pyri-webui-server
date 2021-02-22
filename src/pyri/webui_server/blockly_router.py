@@ -20,12 +20,32 @@ class PryiWebUIBlocklyBlocksRouteHandler:
         return list(self._blocks.keys())
 
     def get_toolbox_json(self):
+        blocks_by_category=dict()
+
+        for b in self._blocks.values():
+            if b.category not in blocks_by_category:
+                blocks_by_category[b.category] = [b]
+            else:
+                blocks_by_category[b.category].append(b)
+
         toolbox_json_text = importlib_resources.files(__package__).joinpath('blockly_standard_toolbox.json').read_text()
         toolbox_json = json.loads(toolbox_json_text)
 
         cat = get_all_blockly_categories()
         for c in cat.values():
-            toolbox_json["contents"].append(json.loads(c.json))
+            c_json = json.loads(c.json)
+            c_name = c_json["name"]
+            if c_name in blocks_by_category:
+                contents = []
+                for b in blocks_by_category[c_name]:
+                    contents.append(
+                        {
+                            "kind": "block",
+                            "type": b.name
+                        }
+                    )
+                c_json["contents"] = contents
+            toolbox_json["contents"].append(c_json)
         return json.dumps(toolbox_json)
 
 
