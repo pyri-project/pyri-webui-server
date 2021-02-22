@@ -4,13 +4,29 @@
 //          toolbox: document.getElementById('toolbox')});
 // });
 
-$(document).ready(function() {
+
+async function retrieveToolboxJSON()
+{
+    var response = await fetch("blockly_blocks/toolbox.json", {cache: "no-store"});
+    if (response.status != 200)
+    {
+        throw new Error("Could not read toolbox json");
+    }
+    const toolbox_json_text = await response.text()
+    const toolbox_json = JSON.parse(toolbox_json_text)
+    //Blockly.mainWorkspace.updateToolbox(toolbox_json)
+    return toolbox_json
+}
+
+async function loadBlockly()
+{
     // Inject Blockly workspace
     var blocklyArea = document.getElementById('blocklyArea');
     var blocklyDiv = document.getElementById('blocklyDiv');
+    const toolbox_json = await retrieveToolboxJSON()
     var workspace = Blockly.inject(blocklyDiv,
         {
-            toolbox: document.getElementById('toolbox'),
+            toolbox: toolbox_json,
             zoom:
                 {
                     controls: true,
@@ -47,6 +63,10 @@ $(document).ready(function() {
     onresize_cb();
     Blockly.svgResize(workspace);
 
+
+    await loadBlocks()
+    
+
     // Realtime Code Generation
     /*function myUpdateFunction(event) {
         // var code_js = Blockly.JavaScript.workspaceToCode(workspace);
@@ -80,4 +100,36 @@ $(document).ready(function() {
         
     //     run_blockly(code_text);
     // });
+};
+
+async function loadBlocks()
+{
+    var response = await fetch("config", {cache: "no-store"});
+    if (response.status != 200)
+    {
+        throw new Error("Could not read config");
+    }
+    const config_json_text = await response.text()
+    const config_json = JSON.parse(config_json_text)
+
+    new_blocks = []
+    blocks = config_json["blockly_block_names"]
+    for (i=0; i<blocks.length; i++)
+    {
+        block_name = blocks[i]
+        blockdef_url = "blockly_blocks/blockdef_" + block_name + ".json"
+        var response2 = await fetch(blockdef_url, {cache: "no-store"});
+        if (response2.status != 200)
+        {
+            throw new Error("Could not read blockly block: " + block_name);
+        }
+        const block_json_text = await response2.text()
+        const block_json = JSON.parse(block_json_text)
+        $(new_blocks).append(block_json)        
+    }
+    Blockly.defineBlocksWithJsonArray(new_blocks)
+}
+
+$(document).ready(function() {
+    loadBlockly()
 });

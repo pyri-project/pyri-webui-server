@@ -1,0 +1,346 @@
+{
+    "contents": [
+        {
+            "kind": "CATEGORY",
+            "contents": [
+                {
+                    "kind": "CATEGORY",
+                    "contents": [
+                        {
+                            "kind": "BLOCK",
+                            "type": "controls_if"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "controls_if"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "controls_if"
+                        }
+                    ],
+                    "name": "If"
+                },
+                {
+                    "kind": "CATEGORY",
+                    "contents": [
+                        {
+                            "kind": "BLOCK",
+                            "type": "logic_compare"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "logic_operation"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "logic_negate"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "logic_boolean"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "logic_null"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "logic_ternary"
+                        }
+                    ],
+                    "name": "Boolean",
+                    "colour": "%{BKY_LOGIC_HUE}"
+                }
+            ],
+            "name": "Logic",
+            "colour": "%{BKY_LOGIC_HUE}"
+        },
+        {
+            "kind": "CATEGORY",
+            "contents": [
+                {
+                    "kind": "BLOCK",
+                    "type": "controls_repeat_ext"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "controls_whileUntil"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "controls_for"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "controls_forEach"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "controls_flow_statements"
+                }
+            ],
+            "name": "Loops",
+            "colour": "%{BKY_LOOPS_HUE}"
+        },
+        {
+            "kind": "CATEGORY",
+            "contents": [
+                {
+                    "kind": "BLOCK",
+                    "type": "math_number"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_arithmetic"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_single"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_trig"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_constant"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_number_property"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_round"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_on_list"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_modulo"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_constrain"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_random_int"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_random_float"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "math_atan2"
+                }
+            ],
+            "name": "Math",
+            "colour": "%{BKY_MATH_HUE}"
+        },
+        {
+            "kind": "CATEGORY",
+            "contents": [
+                {
+                    "kind": "BLOCK",
+                    "type": "lists_create_empty"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "lists_create_with"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "lists_repeat"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "lists_length"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "lists_isEmpty"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "lists_indexOf"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "lists_getIndex"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "lists_setIndex"
+                }
+            ],
+            "name": "Lists",
+            "colour": "%{BKY_LISTS_HUE}"
+        },
+        {
+            "kind": "CATEGORY",
+            "contents": [
+                {
+                    "kind": "BLOCK",
+                    "type": "text"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "text_length"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "text_print"
+                }
+            ],
+            "name": "Text",
+            "colour": "%{BKY_TEXTS_HUE}"
+        },
+        {
+            "kind": "SEP"
+        },
+        {
+            "kind": "CATEGORY",
+            "contents": [],
+            "name": "Variables",
+            "custom": "VARIABLE",
+            "colour": "%{BKY_VARIABLES_HUE}"
+        },
+        {
+            "kind": "CATEGORY",
+            "contents": [],
+            "name": "Functions",
+            "custom": "PROCEDURE",
+            "colour": "%{BKY_PROCEDURES_HUE}"
+        },
+        {
+            "kind": "SEP"
+        },
+        {
+            "kind": "CATEGORY",
+            "contents": [
+                {
+                    "kind": "CATEGORY",
+                    "contents": [
+                        {
+                            "kind": "BLOCK",
+                            "type": "robot_jog_joint_not_relative"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "robot_jog_joint_relative"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "robot_jog_joints_not_relative"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "robot_jog_joints_relative"
+                        }
+                    ],
+                    "name": "JointSpaceJog"
+                },
+                {
+                    "kind": "CATEGORY",
+                    "contents": [
+                        {
+                            "kind": "BLOCK",
+                            "type": "robot_jog_cartesian_not_relative"
+                        },
+                        {
+                            "kind": "BLOCK",
+                            "type": "robot_jog_cartesian_relative"
+                        }
+                    ],
+                    "name": "CartesianSpaceJog"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "robot_wait"
+                }
+            ],
+            "name": "Robot",
+            "colour": "0"
+        },
+        {
+            "kind": "SEP"
+        },
+        {
+            "kind": "CATEGORY",
+            "contents": [
+                {
+                    "kind": "BLOCK",
+                    "type": "camera_get_object_pose_z_required"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "camera_get_object_pose_z_not_required"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "camera_transform_pose_to_robot"
+                }
+            ],
+            "name": "Camera",
+            "colour": "180"
+        },
+        {
+            "kind": "SEP"
+        },
+        {
+            "kind": "CATEGORY",
+            "contents": [
+                {
+                    "kind": "BLOCK",
+                    "type": "utils_position"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "utils_orientation"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "utils_pose_from_position_n_orientation"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "utils_position_in_pose"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "utils_orientation_in_pose"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "utils_arithmetic"
+                }
+            ],
+            "name": "Utilities",
+            "colour": "200"
+        },
+        {
+            "kind": "SEP"
+        },
+        {
+            "kind": "CATEGORY",
+            "contents": [
+                {
+                    "kind": "BLOCK",
+                    "type": "tool_gripper"
+                },
+                {
+                    "kind": "BLOCK",
+                    "type": "tool_link_attacher"
+                }
+            ],
+            "name": "Tools",
+            "colour": "60"
+        }
+    ],
+    "id": "toolbox"
+}
