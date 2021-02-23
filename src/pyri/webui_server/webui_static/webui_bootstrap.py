@@ -1,11 +1,11 @@
 import RobotRaconteur as RR
 from RobotRaconteur.RobotRaconteurPythonUtil import WebFuture
-import micropip
 import json
 import io
 import sys
 import zipfile
 import os
+import importlib
 
 from js import XMLHttpRequest
 
@@ -41,12 +41,18 @@ async def load_wheels(wheels):
     for w in wheels:
         await download_install_webui_wheel(w)
 
-async def main():
+    importlib.invalidate_caches()
+
+async def bootstrap():
     config_json_text = (await read_url("/config")).read()
     config = json.loads(config_json_text)
     await load_wheels(config["wheels"])
 
-    print(os.listdir("/lib/python3.8/site-packages"))
+    from pyri.webui_browser import PyriWebUIBrowser
+
+    pyri_webui = PyriWebUIBrowser(loop, config)
+    loop.call_soon(pyri_webui.run())
+
 
 for __p in sys.path:
     if __p.endswith('site-packages'):
@@ -54,4 +60,4 @@ for __p in sys.path:
         break
 
 loop = RR.WebLoop()
-loop.call_soon(main())
+loop.call_soon(bootstrap())
