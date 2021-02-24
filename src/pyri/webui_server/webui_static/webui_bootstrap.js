@@ -6,4 +6,29 @@ async function webui_bootstrap(){
     const webui_bootstrap_py = await response.text();
     pyodide.runPython(webui_bootstrap_py)
 }
+
+function golden_layout_new(config, target)
+{
+    return new window.GoldenLayout(config,target)
+}
+
+function golden_layout_register_component(layout, name, component_py)
+{
+    layout.registerComponent(name, function(container, state)
+        {
+            this.py_this = component_py(container,state)
+        }    
+    )
+}
+
+function golden_layout_append_menu_item(component_name)
+{
+    var element_name = $( '<li>' + component_name + '</li>' );
+
+    $( '#menuContainer' ).append( element_name );
+    
+    return element_name
+
+}
+
 webui_bootstrap();

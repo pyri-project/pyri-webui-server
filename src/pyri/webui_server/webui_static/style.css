@@ -330,6 +330,10 @@
     top: 0%;
     left: 15%;
     box-shadow: -3px 0px 9px 0px rgba( 0, 0, 0, 0.4 );
+    background-image: url("pyri_logo_web.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
   }
   
   /*#titleContainer{
