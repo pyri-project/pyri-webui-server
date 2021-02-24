@@ -4,9 +4,14 @@
         <script src="https://code.jquery.com/jquery-latest.js"></script>
         <script src="https://robotraconteur.github.io/robotraconteur_pyodide/pyodide.js"></script>
         <script type="text/javascript" src="https://golden-layout.com/files/latest/js/goldenlayout.js"></script>
+        <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+        
         <link type="text/css" rel="stylesheet" href="https://golden-layout.com/files/latest/css/goldenlayout-base.css" />
         <link type="text/css" rel="stylesheet" href="https://golden-layout.com/files/latest/css/goldenlayout-light-theme.css" />
         <link type="text/css" rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Material+Icons">
+        <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/vue-material.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/vue-material/dist/theme/default.css">
         <title>PyRI WebUI</title>
     </head>
     <body>
@@ -16,5 +21,11 @@
             <ul id="menuContainer"></ul>
             <div id="layoutContainer"></div>
         </div>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="https://unpkg.com/vue-material"></script>
+        <script>
+        Vue.use(VueMaterial.default)
+
+        </script>
     </body>
 </html>
