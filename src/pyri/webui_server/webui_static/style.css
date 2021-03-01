@@ -53,23 +53,7 @@
     overflow: auto;
   }
   
-  table{
-    table-layout: fixed;
-    /*word-break: break-all;*/
-    /*word-wrap: break-word;*/
-    text-align: center; 
-    /*display: block; */
-    display: table;
-    margin: 0px; 
-    padding:0px; 
-    width: 100%; 
-    height: 100%;
-    object-fit:cover;
-  
-    /*zoom: .5;*/
-    /*transform: scale(.5);*/
-  }
-  
+    
   table#table_RobotStatus {
     table-layout: fixed;
     /*word-break: break-all;*/
@@ -224,12 +208,7 @@
     top:1px;
   }
   /**/
-  
-  td{
-    width: 100%; 
-    padding:0px 0px;
-  }
-  
+    
   input{
     text-align:center;
     width: 100%;
