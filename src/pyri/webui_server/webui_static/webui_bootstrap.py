@@ -1,4 +1,4 @@
-import RobotRaconteur as RR
+from RobotRaconteur.Client import *
 from RobotRaconteur.RobotRaconteurPythonUtil import WebFuture
 import json
 import io
@@ -33,7 +33,6 @@ async def read_url(url):
 async def download_install_webui_wheel(wheel_name):
     
     wheel_io = await read_url(f"/wheels/{wheel_name}.whl")
-    print(wheel_io)
     with zipfile.ZipFile(wheel_io) as zf:
         zf.extractall(WHEEL_BASE)
 
@@ -47,6 +46,9 @@ async def bootstrap():
     config_json_text = (await read_url("/config")).read()
     config = json.loads(config_json_text)
     await load_wheels(config["wheels"])
+
+    RRN.SetLogLevelFromString("DEBUG")
+    RR.PythonTracebackPrintExc = True
 
     from pyri.webui_browser import PyriWebUIBrowser
 

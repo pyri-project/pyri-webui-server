@@ -31,4 +31,9 @@ function golden_layout_append_menu_item(component_name)
 
 }
 
+function vuex_store_new(args)
+{
+    return new Vuex.Store(args)
+}
+
 webui_bootstrap();
