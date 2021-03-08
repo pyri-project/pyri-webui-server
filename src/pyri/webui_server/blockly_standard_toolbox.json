@@ -211,13 +211,6 @@
             "colour": "%{BKY_VARIABLES_HUE}"
         },
         {
-            "kind": "CATEGORY",
-            "contents": [],
-            "name": "Functions",
-            "custom": "PROCEDURE",
-            "colour": "%{BKY_PROCEDURES_HUE}"
-        },
-        {
             "kind": "SEP"
         }
     ],

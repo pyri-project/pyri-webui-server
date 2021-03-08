@@ -5,6 +5,8 @@
 // });
 
 
+var blockly_workspace = null
+
 async function retrieveToolboxJSON()
 {
     var response = await fetch("blockly_blocks/toolbox.json", {cache: "no-store"});
@@ -48,6 +50,7 @@ async function loadBlockly()
                 },
         });
 
+    
     // Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), workspace);
     
     // For resizable workspace
@@ -65,6 +68,8 @@ async function loadBlockly()
 
 
     await loadBlocks()
+
+    blockly_workspace = workspace
     
 
     // Realtime Code Generation
@@ -129,6 +134,25 @@ async function loadBlocks()
     }
     Blockly.defineBlocksWithJsonArray(new_blocks)
 }
+
+function setBlocklyXml(procedure_xml)
+{
+    xml_dom = Blockly.Xml.textToDom(procedure_xml)
+    Blockly.Xml.domToWorkspace(xml_dom,blockly_workspace)
+}
+
+function getBlocklyXml()
+{
+    xml_dom = Blockly.Xml.workspaceToDom(blockly_workspace)
+    return Blockly.Xml.domToText(xml_dom)
+}
+
+function blocklyReady()
+{
+    return blockly_workspace !== null
+}
+
+
 
 $(document).ready(function() {
     loadBlockly()

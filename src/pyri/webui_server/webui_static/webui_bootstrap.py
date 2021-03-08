@@ -37,7 +37,7 @@ async def bootstrap():
         config = json.loads(config_json_text)
         await load_wheels(config["wheels"])
 
-        RRN.SetLogLevelFromString("DEBUG")
+        RRN.SetLogLevelFromString("INFO")
         RR.SetPythonTracebackPrintExc(True)
 
         from pyri.webui_browser import PyriWebUIBrowser
