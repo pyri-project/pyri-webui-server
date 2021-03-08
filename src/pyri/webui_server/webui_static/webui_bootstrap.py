@@ -1,13 +1,14 @@
 from RobotRaconteur.Client import *
-from RobotRaconteur.RobotRaconteurPythonUtil import WebFuture
 import json
 import io
 import sys
 import zipfile
 import os
 import importlib
+import asyncio
+import traceback
 
-from js import XMLHttpRequest
+import js
 
 
 
@@ -15,20 +16,8 @@ async def read_url(url):
 
     # Based on pyodide micropip module
 
-    req = XMLHttpRequest.new()
-    req.open("GET", url, True)
-    req.responseType = "arraybuffer"
-
-    p = WebFuture()
-
-    def callback(e):
-        if req.readyState == 4:
-            p.handler(io.BytesIO(req.response),None)
-
-    req.onreadystatechange = callback
-    req.send(None)
-
-    return await p
+    res = await js.fetch(url)
+    return io.BytesIO(await res.arrayBuffer())
 
 async def download_install_webui_wheel(wheel_name):
     
@@ -43,17 +32,20 @@ async def load_wheels(wheels):
     importlib.invalidate_caches()
 
 async def bootstrap():
-    config_json_text = (await read_url("/config")).read()
-    config = json.loads(config_json_text)
-    await load_wheels(config["wheels"])
+    try:
+        config_json_text = (await read_url("/config")).read()
+        config = json.loads(config_json_text)
+        await load_wheels(config["wheels"])
 
-    RRN.SetLogLevelFromString("DEBUG")
-    RR.PythonTracebackPrintExc = True
+        RRN.SetLogLevelFromString("DEBUG")
+        RR.SetPythonTracebackPrintExc(True)
 
-    from pyri.webui_browser import PyriWebUIBrowser
+        from pyri.webui_browser import PyriWebUIBrowser
 
-    pyri_webui = PyriWebUIBrowser(loop, config)
-    loop.call_soon(pyri_webui.run())
+        pyri_webui = PyriWebUIBrowser(loop, config)
+        loop.create_task(pyri_webui.run())
+    except:
+        traceback.print_exc()
 
 
 for __p in sys.path:
@@ -61,5 +53,5 @@ for __p in sys.path:
         WHEEL_BASE = __p
         break
 
-loop = RR.WebLoop()
-loop.call_soon(bootstrap())
+loop = asyncio.get_event_loop()
+loop.create_task(bootstrap())
