@@ -16,7 +16,7 @@ async def read_url(url):
 
     # Based on pyodide micropip module
 
-    res = await js.fetch(url)
+    res = await js.fetch(url, {"cache": "no-store"})
     return io.BytesIO(await res.arrayBuffer())
 
 async def download_install_webui_wheel(wheel_name):
