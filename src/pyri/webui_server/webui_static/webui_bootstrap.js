@@ -36,4 +36,28 @@ function vuex_store_new(args)
     return new Vuex.Store(args)
 }
 
+function python_to_js(obj)
+{
+    //console.log(obj)
+    let js_obj = obj.deepCopyToJavascript()
+    obj.destroy()
+    return js_obj
+}
+
+function pyodide_set_timeout(handler, delay)
+{
+  setTimeout(function() {
+    try
+    {
+        handler()
+    }
+    catch (e)
+    {
+      handler.destroy()
+      throw e
+    }
+  }, delay)
+}
+
+
 webui_bootstrap();
