@@ -252,7 +252,7 @@
   }
   
   #menuContainer{
-    width: 15%;
+    width: 0.1%;
     height: 80%;
     position:absolute;
     top: 0;
@@ -279,7 +279,7 @@
   
   #saveLayoutStateContainer{
     overflow: auto;
-    width: 15%;
+    width: 0.1%;
     height: 20%;
     position:relative;
     top: 80%;
@@ -303,11 +303,11 @@
   
   
   #layoutContainer{
-    width: 85%;
+    width: 99.9%;
     height: 100%;
     position:absolute;
     top: 0%;
-    left: 15%;
+    left: 0.1%;
     box-shadow: -3px 0px 9px 0px rgba( 0, 0, 0, 0.4 );
     background-image: url("pyri_logo_web.svg");
     background-position: center;
