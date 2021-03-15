@@ -2,14 +2,18 @@
     <head>
         <meta charset="utf-8"/>
         <script src="https://code.jquery.com/jquery-latest.js"></script>
-        <script src="https://robotraconteur.github.io/robotraconteur_pyodide/pyodide.js"></script>
+        <!--<script src="https://robotraconteur.github.io/robotraconteur_pyodide/pyodide.js"></script>-->
+        <script src="http://192.168.1.133:8000/build/pyodide.js"></script>
+        <script type="text/javascript">
+            window.languagePluginUrl="http://192.168.1.133:8000/build/"
+        </script>
         <script type="text/javascript" src="https://golden-layout.com/files/latest/js/goldenlayout.js"></script>
         <!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
         
         
         
         <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
-        <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+        <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css" />
         
         <link type="text/css" rel="stylesheet" href="https://golden-layout.com/files/latest/css/goldenlayout-base.css" />
         <link type="text/css" rel="stylesheet" href="https://golden-layout.com/files/latest/css/goldenlayout-light-theme.css" />
@@ -26,7 +30,7 @@
     <body>
         <script src="./webui_bootstrap.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.js"></script>
-        <!--<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table-vue.js"></script>-->
+        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table-vue.js"></script>
             
         <div id="wrapper">
             <ul id="menuContainer" hidden></ul>
