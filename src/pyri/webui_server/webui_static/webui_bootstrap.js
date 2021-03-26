@@ -39,7 +39,7 @@ function vuex_store_new(args)
 function python_to_js(obj)
 {
     //console.log(obj)
-    let js_obj = obj.deepCopyToJavascript()
+    let js_obj = obj.toJs()
     obj.destroy()
     return js_obj
 }
