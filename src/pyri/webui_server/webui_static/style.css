@@ -386,7 +386,7 @@
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s;
-    display: inline-block;
+    /*display: inline-block;*/
   }
   
   /* Add Animation */
@@ -431,11 +431,7 @@
     padding: 2px 16px;
   }
   
-  .img-container img {
-    max-width: 50%;
-    max-height: 50%;
-  }
-  
+ 
   .modal-footer {
     padding: 2px 16px;
     /*background-color: #5cb85c;
@@ -457,9 +453,30 @@
     bottom: 20;
     left: 20;
     right: 20;
-    /*height: 100vh;*/
+    height: calc(100vh - 3.5rem);
+    max-height: calc(100vh - 3.5rem);
     display: flex;
     position: fixed;
     z-index: 100000;
+}
+
+.modal-fullscreen2  .modal {
+  padding: 0 !important;
+}
+.modal-fullscreen2 .modal-dialog {
+  max-width: 100%;
+  height: calc(100vh - 3.5rem);
+  max-height: calc(100vh - 3.5rem);  
+  margin: 0;
+}
+.modal-fullscreen2 .modal-content {
+  width: calc(100% - 2rem);
+  min-height: calc(100vh - 3.5rem);
+  max-height: calc(100vh - 3.5rem);
+  margin: 1rem;
+}
+
+.modal-fullscreen2 .modal-body {
+  height: 100%;
 }
   /*--------------------------------------------*/
