@@ -40,8 +40,6 @@ class PyriWebUIServer:
 
         self._app.static('/wheels',str(wheels_dir),name='wheels')
 
-        self._wheel_filenames = [str(w.stem) for w in wheels_dir.glob('*.whl')]
-
         self._app.add_route(self.config_req_handler,"/config")
 
         self._device_manager_url = device_manager_url
@@ -49,12 +47,15 @@ class PyriWebUIServer:
 
 
     def config_req_handler(self,request):
+
+        wheel_filenames = [str(w.stem) for w in self._wheels_dir.glob('*.whl')]
+
         dev_url = self._device_manager_url
         if dev_url.startswith('rr+tcp://localhost'):
             dev_url = dev_url.replace('localhost',urllib.parse.urlsplit("//" + request.host).hostname,1)
         ret = {
             'device_manager_url': dev_url,
-            'wheels': self._wheel_filenames,
+            'wheels': wheel_filenames,
             'blockly_block_names': self._blockly_block_names,
             'plugin_names': self._route_plugin_names
         }
