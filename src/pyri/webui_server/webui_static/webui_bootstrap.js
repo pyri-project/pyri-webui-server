@@ -56,6 +56,7 @@ function pyodide_set_timeout(handler, delay)
       handler.destroy()
       throw e
     }
+    handler.destroy()
   }, delay)
 }
 
