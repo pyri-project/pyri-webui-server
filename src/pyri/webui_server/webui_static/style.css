@@ -162,7 +162,7 @@
   }
   
   /**/
-  button {
+  .btn-default {
     -moz-box-shadow:inset 0px 1px 0px 0px #777;
     -webkit-box-shadow:inset 0px 1px 0px 0px #777;
     box-shadow:inset 0px 1px 0px 0px #777;
@@ -290,8 +290,8 @@
   
   
   .btn-group button {
-    font: 12px Arial, sans-serif;
-    height: 33.333333% ;
+    /*font: 12px Arial, sans-serif;*/
+    /*height: 33.333333% ;*/
     /*display: block;  Make the buttons appear below each other */
   }
   
@@ -479,4 +479,54 @@
 .modal-fullscreen2 .modal-body {
   height: 100%;
 }
+
+.device_status_text_disconnected::before {
+  color:red;
+  content: "Disconnected";
+}
+
+.device_status_text_error::before {
+  color:red;
+  content: "Error";
+}
+
+.device_status_text_internal_error::before {
+  color:red;
+  content: "Internal Error";
+}
+
+.device_status_text_ready::before {
+  color:green;
+  content: "Ready";
+}
+
+.device_status_text_connected::before {
+  color:yellow;
+  content: "Connected";
+}
+
+.bootstrap-table .fixed-table-container .table tbody tr .card-view .card-view-title {
+	/*font-weight: 700;
+	display: inline-block;*/
+	min-width: 14rem !important;
+	/*text-align: left !important;*/
+}
+
+#device_list_table {
+  height: calc(100vh - 4rem)
+}
+
+/* Workaround for weird table sizing */
+#active_devices_table .bootstrap-table .fixed-table-container .fixed-table-body {
+	height: calc(100vh - 7.5rem);
+}
+
+#device-info-modal .bootstrap-table .fixed-table-container .fixed-table-body {
+	height: calc(100vh - 13rem);
+}
+
+#add-device-modal .bootstrap-table .fixed-table-container .fixed-table-body {
+	height: calc(100vh - 13rem);
+}
+
   /*--------------------------------------------*/
