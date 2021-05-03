@@ -193,7 +193,7 @@
     height: 100%;*/
     
   }
-  button:hover {
+  /*button:hover {
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #1f1f1f), color-stop(1, #403f40));
     background:-moz-linear-gradient(top, #1f1f1f 5%, #403f40 100%);
     background:-webkit-linear-gradient(top, #1f1f1f 5%, #403f40 100%);
@@ -202,11 +202,11 @@
     background:linear-gradient(to bottom, #1f1f1f 5%, #403f40 100%);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1f1f1f', endColorstr='#403f40',GradientType=0);
     background-color:#1f1f1f;
-  }
-  button:active {
+  }*/
+  /*button:active {
     position:relative;
     top:1px;
-  }
+  }*/
   /**/
     
   input{
@@ -529,4 +529,23 @@
 	height: calc(100vh - 13rem);
 }
 
+#procedures_table .bootstrap-table .fixed-table-container .fixed-table-body {
+	height: calc(100vh - 9.5rem);
+}
+
+#globals_table .bootstrap-table .fixed-table-container .fixed-table-body {
+	height: calc(100vh - 9.5rem);
+}
+
+#cameras_table .bootstrap-table .fixed-table-container .fixed-table-body {
+	height: calc(100vh - 9.5rem);
+}
+
+#jog_panel_component .card-body {
+	padding: 0.5rem;
+}
+
+#jog_panel_component h4 {
+	font-size: 1em;
+}
   /*--------------------------------------------*/
