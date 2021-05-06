@@ -517,9 +517,6 @@
 }
 
 /* Workaround for weird table sizing */
-#active_devices_table .bootstrap-table .fixed-table-container .fixed-table-body {
-	height: calc(100vh - 7.5rem);
-}
 
 #device-info-modal .bootstrap-table .fixed-table-container .fixed-table-body {
 	height: calc(100vh - 13rem);
@@ -529,18 +526,6 @@
 	height: calc(100vh - 13rem);
 }
 
-#procedures_table .bootstrap-table .fixed-table-container .fixed-table-body {
-	height: calc(100vh - 9.5rem);
-}
-
-#globals_table .bootstrap-table .fixed-table-container .fixed-table-body {
-	height: calc(100vh - 9.5rem);
-}
-
-#cameras_table .bootstrap-table .fixed-table-container .fixed-table-body {
-	height: calc(100vh - 9.5rem);
-}
-
 #jog_panel_component .card-body {
 	padding: 0.5rem;
 }
@@ -548,4 +533,21 @@
 #jog_panel_component h4 {
 	font-size: 1em;
 }
+
+.pyri-table-panel {
+  display: flex;
+  flex-direction: column
+}
+
+.pyri-table-panel .bootstrap-table {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.pyri-table-panel .bootstrap-table .fixed-table-container {
+	min-height: 0;
+}
+
+
   /*--------------------------------------------*/
