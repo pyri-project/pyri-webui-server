@@ -162,6 +162,16 @@ function end()
     editor.setPosition(pos)
 }
 
+function commentLine()
+{
+    editor.trigger('','editor.action.commentLine')
+}
+
+function removeCommentLine()
+{
+    editor.trigger('','editor.action.removeCommentLine')
+}
+
 $(document).ready(function() {
     loadEditor()
 });
