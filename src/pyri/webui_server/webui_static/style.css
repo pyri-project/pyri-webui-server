@@ -549,5 +549,9 @@
 	min-height: 0;
 }
 
+.toast-body {
+  white-space: pre-line
+}
+
 
   /*--------------------------------------------*/
