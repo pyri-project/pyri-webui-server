@@ -2,6 +2,7 @@ from sanic import Sanic
 from sanic import response as res
 from .webui_resource_router import PyriWebUIResourceRouteHandler
 from .blockly_router import PryiWebUIBlocklyBlocksRouteHandler
+from .sandbox_functions_router import PryiWebUISandboxFunctionsRouteHandler
 from pyri.plugins.webui_server import get_webui_server_plugin_factories
 import appdirs
 from pathlib import Path
@@ -23,6 +24,10 @@ class PyriWebUIServer:
         blockly_block_handler = PryiWebUIBlocklyBlocksRouteHandler()
         self._app.add_route(blockly_block_handler.handler, "/blockly_blocks/<path:path>")
         self._blockly_block_names = blockly_block_handler.get_block_names()
+
+        sandbox_function_handler = PryiWebUISandboxFunctionsRouteHandler()
+        self._app.add_route(sandbox_function_handler.handler, "/sandbox_functions/<path:path>")
+        self._sandbox_function_names = sandbox_function_handler.get_function_names()
 
         plugin_route_factories = get_webui_server_plugin_factories()
 
@@ -57,6 +62,7 @@ class PyriWebUIServer:
             'device_manager_url': dev_url,
             'wheels': wheel_filenames,
             'blockly_block_names': self._blockly_block_names,
+            'sandbox_function_names': self._sandbox_function_names,
             'plugin_names': self._route_plugin_names
         }
 
