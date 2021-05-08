@@ -28,6 +28,13 @@
         <script src="https://cdn.jsdelivr.net/npm/cropperjs@1.5.11/dist/cropper.min.js"></script>
         <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cropperjs@1.5.11/dist/cropper.min.css" />
 
+        <script>
+            // Prevent navigation away from page
+            window.onbeforeunload = function() {
+                return "";
+            }
+        </script>
+
         <title>PyRI WebUI</title>
     </head>
     <body>
