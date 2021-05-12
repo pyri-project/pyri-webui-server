@@ -9,13 +9,22 @@ from pathlib import Path
 import urllib.parse
 
 class PyriWebUIServer:
-    def __init__(self, device_manager_url: str, host : str='0.0.0.0', port: int =8000, wheels_dir: Path=None):
+    def __init__(self, device_manager_url: str, host : str='0.0.0.0', port: int =8000, wheels_dir: Path=None, deps_dir: Path=None, pyodide_dir = None):
         self._host = host
         self._port = port
         self._app = Sanic("PyRI WebUI")
 
+        webui_resources_dir = Path(appdirs.user_data_dir(appname="pyri-webui-server", appauthor="pyri-project", roaming=False))
+
         if wheels_dir is None:
-            wheels_dir = Path(appdirs.user_data_dir(appname="pyri-webui-server", appauthor="pyri-project", roaming=False)).joinpath("wheels")
+            wheels_dir = webui_resources_dir.joinpath("wheels")
+
+        if deps_dir is None:
+            deps_dir = webui_resources_dir.joinpath("deps").joinpath("node_modules")
+
+        if pyodide_dir is None:
+            pyodide_dir = webui_resources_dir.joinpath("robotraconteur_pyodide")
+
 
         wheels_dir.mkdir(exist_ok=True,parents=True)
 
@@ -44,6 +53,8 @@ class PyriWebUIServer:
         self._app.add_route(main_handler.handler,"/<path:[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)*>")
 
         self._app.static('/wheels',str(wheels_dir),name='wheels')
+        self._app.static('/deps',str(deps_dir),name='deps')
+        self._app.static('/robotraconteur_pyodide',str(pyodide_dir),name='robotraconteur_pyodide')
 
         self._app.add_route(self.config_req_handler,"/config")
 
