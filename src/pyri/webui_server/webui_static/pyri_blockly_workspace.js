@@ -48,6 +48,7 @@ async function loadBlockly()
                     drag: true,
                     wheel: false
                 },
+            media: "/deps/blockly/media/"
         });
 
     
