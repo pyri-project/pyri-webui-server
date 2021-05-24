@@ -7,12 +7,14 @@ from pyri.plugins.webui_server import get_webui_server_plugin_factories
 import appdirs
 from pathlib import Path
 import urllib.parse
+import asyncio
 
 class PyriWebUIServer:
     def __init__(self, device_manager_url: str, host : str='0.0.0.0', port: int =8000, static_data_dir: Path=None):
         self._host = host
         self._port = port
         self._app = Sanic("PyRI WebUI")
+        self._loop = asyncio.get_event_loop()
         
         if static_data_dir is None:
             static_data_dir = Path(appdirs.user_data_dir(appname="pyri-webui-server", appauthor="pyri-project", roaming=False))
@@ -80,4 +82,8 @@ class PyriWebUIServer:
         
 
     def run(self):
-        self._app.run(self._host, self._port)
+        self._loop.run_until_complete(self._app.create_server(self._host, self._port, return_asyncio_server=True))
+        self._loop.run_forever()
+
+    def stop(self):
+        self._loop.call_soon_threadsafe(lambda: self._app.stop())
