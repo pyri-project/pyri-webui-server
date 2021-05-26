@@ -1,6 +1,7 @@
 from .webui_server import PyriWebUIServer
 import argparse
 import pyri.util.wait_exit as wait_exit
+import os
 
 def main():
     parser = argparse.ArgumentParser(description="PyRI WebUI Server")
@@ -11,7 +12,13 @@ def main():
 
     args, _ = parser.parse_known_args()
 
-    server = PyriWebUIServer(args.device_manager_url,args.http_host,args.http_port,args.static_data_dir)
+    static_data_dir = None
+    if args.static_data_dir is not None:
+        static_data_dir = args.static_data_dir
+    elif "PYRI_WEBUI_STATIC_DATA_DIR" in os.environ:
+        static_data_dir = os.environ["PYRI_WEBUI_STATIC_DATA_DIR"]
+
+    server = PyriWebUIServer(args.device_manager_url,args.http_host,args.http_port,static_data_dir)
     wait_exit.wait_exit_callback(lambda: server.stop())
     server.run()
 
