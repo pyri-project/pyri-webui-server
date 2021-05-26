@@ -8,7 +8,6 @@ def main():
     parser.add_argument("--http-host", type=str, default='0.0.0.0',help="Host to listen for connections")
     parser.add_argument("--http-port",type=int,default=8000,help="Port to listen for connections")
     parser.add_argument("--static-data-dir",type=str,default=None,help="Directory to store WebUI static data (Pyodide, wheels, deps)")
-    parser.add_argument("--wait-signal",action='store_const',const=True,default=True, help="wait for SIGTERM or SIGINT")
 
     args, _ = parser.parse_known_args()
 
