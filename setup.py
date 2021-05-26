@@ -26,6 +26,7 @@ setup(
         'test': ['pytest','pytest-asyncio']
     },
     entry_points = {        
-        'console_scripts': ['pyri-webui-server = pyri.webui_server.__main__:main']
+        'console_scripts': ['pyri-webui-server = pyri.webui_server.__main__:main'],
+        'pyri.plugins.service_node_launch': ['pyri-webui-server-launch = pyri.webui_server.service_node_launch:get_service_node_launch_factory']
     }
 )
