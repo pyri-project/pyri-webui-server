@@ -501,7 +501,7 @@
 }
 
 .device_status_text_connected::before {
-  color:yellow;
+  color:#CCCC00;
   content: "Connected";
 }
 
