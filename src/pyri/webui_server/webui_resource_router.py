@@ -21,7 +21,7 @@ class PyriWebUIResourceRouteHandler:
         
         try:
             path2 = importlib_resources.files(self._package) / 'webui_static' / path
-            ret = path2.read_text()
+            ret = path2.read_bytes()
         except FileNotFoundError:
             abort(404)
 
