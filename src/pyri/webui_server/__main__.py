@@ -2,6 +2,7 @@ from .webui_server import PyriWebUIServer
 import argparse
 import pyri.util.wait_exit as wait_exit
 import os
+import importlib.metadata
 
 def main():
     parser = argparse.ArgumentParser(description="PyRI WebUI Server")
@@ -9,6 +10,10 @@ def main():
     parser.add_argument("--http-host", type=str, default='0.0.0.0',help="Host to listen for connections")
     parser.add_argument("--http-port",type=int,default=8000,help="Port to listen for connections")
     parser.add_argument("--static-data-dir",type=str,default=None,help="Directory to store WebUI static data (Pyodide, wheels, deps)")
+
+    version1 = importlib.metadata.version('pyri-webui-server')
+    parser.add_argument('-V', '--version', action='version', version=f'%(prog)s {version1}')
+    args, _ = parser.parse_known_args()
 
     args, _ = parser.parse_known_args()
 
