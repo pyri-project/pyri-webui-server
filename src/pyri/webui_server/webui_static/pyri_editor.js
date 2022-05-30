@@ -4,13 +4,13 @@ var editor = null
 function loadEditor() {
     // Based on https://jsfiddle.net/developit/bwgkr6uq/ which just works but is based on unpkg.com.
     // Provided by loader.min.js.
-    require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs' }});
+    require.config({ paths: { 'vs': '/deps/monaco-editor/min/vs' }});
     window.MonacoEnvironment = { getWorkerUrl: () => proxy };
     let proxy = URL.createObjectURL(new Blob([`
         self.MonacoEnvironment = {
-            baseUrl: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min'
+            baseUrl: '/deps/monaco-editor/min'
         };
-        importScripts('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/base/worker/workerMain.min.js');
+        importScripts('/deps/monaco-editor/min/vs/base/worker/workerMain.min.js');
     `], { type: 'text/javascript' }));
     require(["vs/editor/editor.main"], function () {
         editor = monaco.editor.create(document.getElementById('container'), {
