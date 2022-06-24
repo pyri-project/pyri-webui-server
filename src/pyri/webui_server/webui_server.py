@@ -8,6 +8,9 @@ import appdirs
 from pathlib import Path
 import urllib.parse
 import asyncio
+import sys
+import mimetypes
+
 
 class PyriWebUIServer:
     def __init__(self, device_manager_url: str, host : str='0.0.0.0', port: int =8000, static_data_dir: Path=None):
@@ -15,6 +18,15 @@ class PyriWebUIServer:
         self._port = port
         self._app = Sanic("PyRI WebUI")
         self._loop = asyncio.get_event_loop()
+
+        # Workaround for invalid js mimetime on Windows
+        if mimetypes.guess_type('test.js')[0] != 'text/javascript':
+            _mimetype_db = mimetypes.__dict__['_db']
+            _mimetype_db.add_type('text/javascript','.js',True)
+            _mimetype_db.add_type('text/jsx','.jsx',True)
+            assert mimetypes.guess_type('test.js')[0] == 'text/javascript'
+            assert mimetypes.guess_type('test.jsx')[0] == 'text/jsx'
+
         
         if static_data_dir is None:
             static_data_dir = Path(appdirs.user_data_dir(appname="pyri-webui-server", appauthor="pyri-project", roaming=False))

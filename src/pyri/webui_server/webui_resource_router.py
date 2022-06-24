@@ -26,5 +26,8 @@ class PyriWebUIResourceRouteHandler:
             abort(404)
 
         print(f"Got request! {path}")
-
-        return res.raw(ret,content_type=mimetypes.guess_type(path))
+        mimetype,_=mimetypes.guess_type(path)
+        #if path.endswith(".js"):
+        #    mimetype = "text/javascript"
+        print(mimetype)
+        return res.raw(ret,content_type=mimetype)

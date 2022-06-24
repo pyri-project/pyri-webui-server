@@ -8,9 +8,8 @@ function loadEditor() {
     window.MonacoEnvironment = { getWorkerUrl: () => proxy };
     let proxy = URL.createObjectURL(new Blob([`
         self.MonacoEnvironment = {
-            baseUrl: '/deps/monaco-editor/min'
+            baseUrl: '/deps/monaco-editor/dev'
         };
-        importScripts('/deps/monaco-editor/min/vs/base/worker/workerMain.min.js');
     `], { type: 'text/javascript' }));
     require(["vs/editor/editor.main"], function () {
         editor = monaco.editor.create(document.getElementById('container'), {

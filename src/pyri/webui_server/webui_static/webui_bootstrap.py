@@ -8,6 +8,7 @@ import importlib
 import asyncio
 import traceback
 
+from pyodide import to_js
 import js
 
 
@@ -16,8 +17,8 @@ async def read_url(url):
 
     # Based on pyodide micropip module
 
-    res = await js.fetch(url, {"cache": "no-store"})
-    return io.BytesIO(await res.arrayBuffer())
+    res = await js.fetch(url, to_js({"cache": "no-store"},dict_converter=js.Object.fromEntries))
+    return io.BytesIO((await res.arrayBuffer()).to_py())
 
 async def download_install_webui_wheel(wheel_name):
     
