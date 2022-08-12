@@ -136,16 +136,24 @@ async function loadBlocks()
     Blockly.defineBlocksWithJsonArray(new_blocks)
 }
 
-function setBlocklyXml(procedure_xml)
+function setBlocklyJson(procedure_json)
 {
-    xml_dom = Blockly.Xml.textToDom(procedure_xml)
-    Blockly.Xml.domToWorkspace(xml_dom,blockly_workspace)
+    Blockly.serialization.workspaces.load(procedure_json, blockly_workspace);
 }
 
-function getBlocklyXml()
+function getBlocklyJson()
 {
-    xml_dom = Blockly.Xml.workspaceToDom(blockly_workspace)
-    return Blockly.Xml.domToText(xml_dom)
+    return Blockly.serialization.workspaces.save(blockly_workspace)
+}
+
+function setBlocklyJsonText(procedure_json_text)
+{
+    setBlocklyJson(JSON.parse(procedure_json_text));
+}
+
+function getBlocklyJsonText()
+{
+    return JSON.stringify(getBlocklyJson());
 }
 
 function blocklyReady()

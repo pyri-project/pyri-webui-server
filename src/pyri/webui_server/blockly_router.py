@@ -33,7 +33,9 @@ class PryiWebUIBlocklyBlocksRouteHandler:
 
         cat = get_all_blockly_categories()
         for c in cat.values():
-            c_json = json.loads(c.json)
+            c_json = c.blockly_json
+            if isinstance(c_json,str):
+                c_json = json.loads(c_json)
             c_name = c_json["name"]
             if c_name in blocks_by_category:
                 contents = []
@@ -67,7 +69,7 @@ class PryiWebUIBlocklyBlocksRouteHandler:
             block = self._blocks.get(block_name, None)
             if block is None:
                 abort(404)
-            return res.raw(block.json, content_type = "application/json")
+            return res.raw(json.dumps(block.blockly_json), content_type = "application/json")
 
         blockpygen_match = re.match("^blockpygen_([0-9a-zA-Z_]+)\\.js$",path)
         if blockpygen_match is not None:
