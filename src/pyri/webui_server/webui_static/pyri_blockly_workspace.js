@@ -110,42 +110,39 @@ async function loadBlockly()
 
 async function loadBlocks()
 {
-    var response = await fetch("config", {cache: "no-store"});
+    var response = await fetch("blockly_blocks/pyri_blocks.json", {cache: "no-store"});
     if (response.status != 200)
     {
-        throw new Error("Could not read config");
+        throw new Error("Could not read blockly blocks");
     }
-    const config_json_text = await response.text()
-    const config_json = JSON.parse(config_json_text)
+    const blocks_json_text = await response.text();
+    const blocks_json = JSON.parse(blocks_json_text);
 
     new_blocks = []
-    blocks = config_json["blockly_block_names"]
-    for (i=0; i<blocks.length; i++)
-    {
-        block_name = blocks[i]
-        blockdef_url = "blockly_blocks/blockdef_" + block_name + ".json"
-        var response2 = await fetch(blockdef_url, {cache: "no-store"});
-        if (response2.status != 200)
-        {
-            throw new Error("Could not read blockly block: " + block_name);
-        }
-        const block_json_text = await response2.text()
-        const block_json = JSON.parse(block_json_text)
-        new_blocks.push(block_json)        
-    }
+    blocks_json.forEach(b => {
+        new_blocks.push(b.blockly_json);
+    })
     Blockly.defineBlocksWithJsonArray(new_blocks)
 }
 
-function setBlocklyXml(procedure_xml)
+function setBlocklyJson(procedure_json)
 {
-    xml_dom = Blockly.Xml.textToDom(procedure_xml)
-    Blockly.Xml.domToWorkspace(xml_dom,blockly_workspace)
+    Blockly.serialization.workspaces.load(procedure_json, blockly_workspace);
 }
 
-function getBlocklyXml()
+function getBlocklyJson()
 {
-    xml_dom = Blockly.Xml.workspaceToDom(blockly_workspace)
-    return Blockly.Xml.domToText(xml_dom)
+    return Blockly.serialization.workspaces.save(blockly_workspace)
+}
+
+function setBlocklyJsonText(procedure_json_text)
+{
+    setBlocklyJson(JSON.parse(procedure_json_text));
+}
+
+function getBlocklyJsonText()
+{
+    return JSON.stringify(getBlocklyJson());
 }
 
 function blocklyReady()
