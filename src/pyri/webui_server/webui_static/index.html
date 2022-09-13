@@ -8,14 +8,19 @@
         <script src="/robotraconteur_pyodide/robotraconteur_pyodide-gh-pages/pyodide.js"></script>
         <!--<script src="http://192.168.1.133:8000/build/pyodide.js"></script>-->
         
-        <script type="text/javascript" src="/deps/golden-layout/dist/goldenlayout.min.js"></script>
+        <script type="module" src="/deps/golden-layout/dist/bundle/umd/golden-layout.js"></script>
+        <link type="text/css" rel="stylesheet" href="/deps/golden-layout/dist/css/goldenlayout-base.css" />
+        <link type="text/css" rel="stylesheet" href="/deps/golden-layout/dist/css/themes/goldenlayout-light-theme.css" />
+        <!--<script type="text/javascript" src="https://unpkg.com/vue-golden-layout@1.6.0/dist/vue-golden-layout.js"></script>-->
         
-        <link type="text/css" rel="stylesheet" href="/deps/bootstrap/dist/css/bootstrap.min.css" />
-        <link type="text/css" rel="stylesheet" href="/deps/bootstrap-vue/dist/bootstrap-vue.min.css" />
         
-        <link type="text/css" rel="stylesheet" href="/deps/golden-layout/src/css/goldenlayout-base.css" />
-        <link type="text/css" rel="stylesheet" href="/deps/golden-layout/src/css/goldenlayout-light-theme.css" />
-        <link type="text/css" rel="stylesheet" href="./style.css" />
+        <!--<link type="text/css" rel="stylesheet" href="/deps/golden-layout/src/css/goldenlayout-base.css" />
+            <link type="text/css" rel="stylesheet" href="/deps/golden-layout/src/css/goldenlayout-light-theme.css" />-->
+            
+            
+            <link type="text/css" rel="stylesheet" href="./style.css" />
+            <link type="text/css" rel="stylesheet" href="/deps/bootstrap/dist/css/bootstrap.min.css" />
+            <link type="text/css" rel="stylesheet" href="/deps/bootstrap-vue/dist/bootstrap-vue.min.css" />
         <link type="text/css" href="/deps/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/deps/@fortawesome/fontawesome-free/css/all.min.css">
 
@@ -47,16 +52,11 @@
 
         <title>PyRI WebUI</title>
     </head>
-    <body>
-        
-        
-        <div id="wrapper">
-            <ul id="menuContainer" hidden></ul>
-            <div id="layoutContainer"></div>
-        </div>
+    <body>        
+        <div id="pyri-webui-browser-app" class="h-100 w-100 position-relative overflow-hidden"></div>
         
         <script>
-        Vue.use(BootstrapVue)    
+        Vue.use(BootstrapVue)
 
         </script>
         <script src="./webui_bootstrap.js"></script>
