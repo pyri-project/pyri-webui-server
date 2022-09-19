@@ -581,4 +581,8 @@
 	padding: 0.2rem;
 }
 
+.x-spreadsheet-toolbar {
+  overflow-x: clip;
+}
+
   /*--------------------------------------------*/
