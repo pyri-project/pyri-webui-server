@@ -2,11 +2,18 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" href="./loader.css">
         <script src="/deps/jquery/dist/jquery.min.js"></script>
         <script src="/robotraconteur_pyodide/robotraconteur_pyodide-gh-pages/pyodide.js"></script>
         <title>PyRI WebUI</title>
     </head>
-    <body>        
+    <body>
+        <div id="loading_screen">
+            <div id="loading_screen_content">
+                <img src="pyri_logo_web.svg" id="loading_logo"/>
+                <div class="lds-ring" id="loading_spinner"><div></div><div></div><div></div><div></div></div>
+            </div>
+        </div>  
         <div id="pyri-webui-browser-app" class="h-100 w-100 position-relative overflow-hidden"></div>
         <script src="./webui_bootstrap.js"></script>
     </body>
