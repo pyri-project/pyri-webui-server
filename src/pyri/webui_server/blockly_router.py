@@ -1,5 +1,5 @@
 import sanic.response as res
-from sanic.exceptions import abort
+from sanic.exceptions import NotFound
 import re
 from pyri.plugins.blockly import get_all_blockly_blocks, get_all_blockly_categories, blockly_block_to_json
 import importlib_resources
@@ -57,10 +57,10 @@ class PryiWebUIBlocklyBlocksRouteHandler:
 
     async def handler(self, request, path=None):
         if path is None:
-            abort(404)
+            raise NotFound(path)
 
         if "/" in path or "\\" in path:
-            abort(404)
+            raise NotFound(path)
 
         if path == "toolbox.json":
             
@@ -87,6 +87,6 @@ class PryiWebUIBlocklyBlocksRouteHandler:
         #         abort(404)
         #     return res.raw(block.python_generator,content_type="text/javascript")
 
-        abort(404)
+        raise NotFound()
 
         

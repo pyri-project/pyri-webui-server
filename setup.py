@@ -17,7 +17,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'pyri-common',
-        'sanic==20.12.1',
+        'sanic',
         'importlib-resources',
         'appdirs'
     ],
