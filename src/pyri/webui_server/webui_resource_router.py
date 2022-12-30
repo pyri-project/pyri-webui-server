@@ -1,8 +1,8 @@
 import importlib_resources
 import sanic.response as res
-from sanic.exceptions import abort
 import mimetypes
 import re
+from sanic.exceptions import NotFound
 
 class PyriWebUIResourceRouteHandler:
     
@@ -23,7 +23,7 @@ class PyriWebUIResourceRouteHandler:
             path2 = importlib_resources.files(self._package) / 'webui_static' / path
             ret = path2.read_bytes()
         except FileNotFoundError:
-            abort(404)
+            raise NotFound(path)
 
         print(f"Got request! {path}")
         mimetype,_=mimetypes.guess_type(path)

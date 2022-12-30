@@ -1,10 +1,10 @@
 import sanic.response as res
-from sanic.exceptions import abort
 import re
 from pyri.plugins.sandbox_functions import get_all_plugin_sandbox_functions
 import importlib_resources
 import json
 import inspect
+from sanic.exceptions import NotFound
 
 class PryiWebUISandboxFunctionsRouteHandler:
 
@@ -43,10 +43,10 @@ class PryiWebUISandboxFunctionsRouteHandler:
 
     async def handler(self, request, path=None):
         if path is None:
-            abort(404)
+            raise NotFound(path)
 
         if "/" in path or "\\" in path:
-            abort(404)
+            raise NotFound(path)
 
         if path == "function_signatures.json":
             return res.json(self.get_function_signatures())
@@ -59,7 +59,7 @@ class PryiWebUISandboxFunctionsRouteHandler:
             function_name = sandbox_function_match.group(1)
             f = self._functions.get(function_name, None)
             if f is None:
-                abort(404)
+                raise NotFound(path)
 
             f_info = {
                 "name": f.__name__,
@@ -69,6 +69,6 @@ class PryiWebUISandboxFunctionsRouteHandler:
             #return res.raw(block.json, content_type = "application/json")
             return res.json(f_info)
 
-        abort(404)
+        raise NotFound("")
 
         

@@ -10,14 +10,17 @@ import urllib.parse
 import asyncio
 import sys
 import mimetypes
+import socket
 
 
 class PyriWebUIServer:
     def __init__(self, device_manager_url: str, host : str='0.0.0.0', port: int =8000, static_data_dir: Path=None):
         self._host = host
         self._port = port
-        self._app = Sanic("PyRI WebUI")
+        self._app = Sanic("pyri_webui")
         self._loop = asyncio.get_event_loop()
+        self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self._socket.bind((host,port))
 
         # Workaround for invalid js mimetime on Windows
         if mimetypes.guess_type('test.js')[0] != 'text/javascript':
@@ -93,8 +96,13 @@ class PyriWebUIServer:
         return res.json(ret)
         
 
+    async def _run_server(self):
+        server = await self._app.create_server(self._host, self._port, return_asyncio_server=True, sock=self._socket)
+        await server.startup()
+        await server.serve_forever()
+
     def run(self):
-        self._loop.run_until_complete(self._app.create_server(self._host, self._port, return_asyncio_server=True))
+        self._loop.run_until_complete(self._run_server())
         self._loop.run_forever()
 
     def stop(self):

@@ -1,64 +1,20 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" href="./loader.css">
         <script src="/deps/jquery/dist/jquery.min.js"></script>
-        <!--<script type="text/javascript">
-            window.languagePluginUrl="/robotraconteur_pyodide/robotraconteur_pyodide-gh-pages/"
-        </script>-->
-        <script src="/robotraconteur_pyodide/robotraconteur_pyodide-gh-pages/pyodide.js"></script>
-        <!--<script src="http://192.168.1.133:8000/build/pyodide.js"></script>-->
-        
-        <script type="module" src="/deps/golden-layout/dist/bundle/umd/golden-layout.js"></script>
-        <link type="text/css" rel="stylesheet" href="/deps/golden-layout/dist/css/goldenlayout-base.css" />
-        <link type="text/css" rel="stylesheet" href="/deps/golden-layout/dist/css/themes/goldenlayout-light-theme.css" />
-        <!--<script type="text/javascript" src="https://unpkg.com/vue-golden-layout@1.6.0/dist/vue-golden-layout.js"></script>-->
-        
-        
-        <!--<link type="text/css" rel="stylesheet" href="/deps/golden-layout/src/css/goldenlayout-base.css" />
-            <link type="text/css" rel="stylesheet" href="/deps/golden-layout/src/css/goldenlayout-light-theme.css" />-->
-            
-            
-            <link type="text/css" rel="stylesheet" href="./style.css" />
-            <link type="text/css" rel="stylesheet" href="/deps/bootstrap/dist/css/bootstrap.min.css" />
-            <link type="text/css" rel="stylesheet" href="/deps/bootstrap-vue/dist/bootstrap-vue.min.css" />
-        <link type="text/css" href="/deps/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/deps/@fortawesome/fontawesome-free/css/all.min.css">
-
-        <script src="/deps/vue/dist/vue.js"></script>
-        <script src="/deps/bootstrap-vue/dist/bootstrap-vue.js"></script>
-
-        
-        <!--<script src="//unpkg.com/vue@latest/dist/vue.js"></script>
-        <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>-->
-
-        <!--<script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.js"></script>
-        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table-vue.js"></script>-->
-
-        <script src="/deps/bootstrap-table/dist/bootstrap-table.js"></script>
-        <script src="/deps/bootstrap-table/dist/bootstrap-table-vue.js"></script>
-        
-
-
-        <!--TODO: Add plugin for loading tags into index.html-->
-        <script src="/deps/cropperjs/dist/cropper.min.js"></script>
-        <link type="text/css" rel="stylesheet" href="/deps/cropperjs/dist/cropper.min.css" />
-        
-        <script>
-            // Prevent navigation away from page
-            window.onbeforeunload = function() {
-                return "";
-            }
-        </script>
-
+        <script src="/robotraconteur_pyodide/pyodide/pyodide.js"></script>
         <title>PyRI WebUI</title>
     </head>
-    <body>        
+    <body>
+        <div id="loading_screen">
+            <div id="loading_screen_content">
+                <img src="pyri_logo_web.svg" id="loading_logo"/>
+                <div class="lds-ring" id="loading_spinner"><div></div><div></div><div></div><div></div></div>
+            </div>
+        </div>  
         <div id="pyri-webui-browser-app" class="h-100 w-100 position-relative overflow-hidden"></div>
-        
-        <script>
-        Vue.use(BootstrapVue)
-
-        </script>
         <script src="./webui_bootstrap.js"></script>
     </body>
 </html>
