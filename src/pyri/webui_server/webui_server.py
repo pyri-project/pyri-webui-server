@@ -64,15 +64,19 @@ class PyriWebUIServer:
             self._app.add_route(r,f"/plugins/{r_name}/<path:path>")
             self._route_plugin_names.append(r_name)
 
+
+        self._app.static('/wheels',str(wheels_dir),name='wheels')
+        # self._app.static('/deps',str(deps_dir),name='deps')
+        # self._app.static('/robotraconteur_pyodide',str(pyodide_dir),name='robotraconteur_pyodide')
+        deps_handler = PyriWebUIResourceRouteHandler("pyri.webui_resources.deps")
+        self._app.add_route(deps_handler.handler, '/deps/<path:path>', name="deps")
+        pyodide_handler = PyriWebUIResourceRouteHandler("pyri.webui_resources.pyodide")
+        self._app.add_route(pyodide_handler.handler,"/robotraconteur_pyodide/<path:path>", name="robotraconteur_pyodide")
+
+        self._app.add_route(self.config_req_handler,"/config")
         main_handler = PyriWebUIResourceRouteHandler(__package__)
         self._app.add_route(main_handler.handler,"/")
         self._app.add_route(main_handler.handler,"/<path:[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)*>")
-
-        self._app.static('/wheels',str(wheels_dir),name='wheels')
-        self._app.static('/deps',str(deps_dir),name='deps')
-        self._app.static('/robotraconteur_pyodide',str(pyodide_dir),name='robotraconteur_pyodide')
-
-        self._app.add_route(self.config_req_handler,"/config")
 
         self._device_manager_url = device_manager_url
 
