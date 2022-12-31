@@ -15,7 +15,7 @@ class PyriWebUIResourceRouteHandler:
             assert "\\" not in path, "path must not contain backslash"
             path_parts = path.split("/")
             for p in path_parts:
-                assert re.match(r'^[A-Za-z0-9_]+(?:\.[A-Za-z0-9_]+)*$',p), "Invalid file path"
+                assert re.match(r'^[A-Za-z0-9_\.\-\@]+(?:\.[A-Za-z0-9_]+)*$',p), "Invalid file path"
         else:
             path = "index.html"
         
