@@ -47,11 +47,11 @@ class PyriWebUIServer:
         self._wheels_dir = wheels_dir
         
         blockly_block_handler = PryiWebUIBlocklyBlocksRouteHandler()
-        self._app.add_route(blockly_block_handler.handler, "/blockly_blocks/<path:path>")
+        self._app.add_route(blockly_block_handler.handler, "/blockly_blocks/<path:path>", name="blockly_blocks")
         self._blockly_block_names = blockly_block_handler.get_block_names()
 
         sandbox_function_handler = PryiWebUISandboxFunctionsRouteHandler()
-        self._app.add_route(sandbox_function_handler.handler, "/sandbox_functions/<path:path>")
+        self._app.add_route(sandbox_function_handler.handler, "/sandbox_functions/<path:path>", name="sandbox_functions")
         self._sandbox_function_names = sandbox_function_handler.get_function_names()
 
         plugin_route_factories = get_webui_server_plugin_factories()
@@ -61,7 +61,7 @@ class PyriWebUIServer:
         for plugin_route_factory in plugin_route_factories:
             r_name = plugin_route_factory.get_plugin_name()
             r = plugin_route_factory.get_plugin_route_handler()
-            self._app.add_route(r,f"/plugins/{r_name}/<path:path>")
+            self._app.add_route(r,f"/plugins/{r_name}/<path:path>", name=f"plugin_{r_name}")
             self._route_plugin_names.append(r_name)
 
 
@@ -73,10 +73,10 @@ class PyriWebUIServer:
         pyodide_handler = PyriWebUIResourceRouteHandler("pyri.webui_resources.pyodide")
         self._app.add_route(pyodide_handler.handler,"/robotraconteur_pyodide/<path:path>", name="robotraconteur_pyodide")
 
-        self._app.add_route(self.config_req_handler,"/config")
+        self._app.add_route(self.config_req_handler,"/config", name="config")
         main_handler = PyriWebUIResourceRouteHandler(__package__)
-        self._app.add_route(main_handler.handler,"/")
-        self._app.add_route(main_handler.handler,"/<path:[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)*>")
+        self._app.add_route(main_handler.handler,"/", name="main")
+        self._app.add_route(main_handler.handler,"/<path:[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)*>", name="main2")
 
         self._device_manager_url = device_manager_url
 
