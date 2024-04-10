@@ -4,7 +4,7 @@ var editor = null
 function loadEditor() {
     // Based on https://jsfiddle.net/developit/bwgkr6uq/ which just works but is based on unpkg.com.
     // Provided by loader.min.js.
-    require.config({ paths: { 'vs': '/deps/monaco-editor/min/vs' }});
+    require.config({ paths: { 'vs': '/deps/monaco-editor/dev/vs' }});
     window.MonacoEnvironment = { getWorkerUrl: () => proxy };
     let proxy = URL.createObjectURL(new Blob([`
         self.MonacoEnvironment = {
