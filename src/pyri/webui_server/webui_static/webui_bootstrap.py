@@ -8,7 +8,7 @@ import importlib
 import asyncio
 import traceback
 
-from pyodide import to_js
+from pyodide.ffi import to_js
 import js
 
 
